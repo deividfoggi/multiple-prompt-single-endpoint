@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: |
           cd scan-essay
-          npm install
+          npm install --force
 
       - name: Run ESLint
         run: |
