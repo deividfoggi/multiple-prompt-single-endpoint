@@ -51,29 +51,20 @@ jobs:
             name: build-artifacts
             path: dist/
 
-      - name: Login to Azure CLI
-        uses: azure/login@v2
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
       - name: Build Image
-        env:
-          AZURE_CONTAINER_REPOSITORY_NAME: ${{vars.AZURE_CONTAINER_REPOSITORY_NAME}}          
         run: |
             echo "✅ Building docker image..."
             path=dist
-            image_tag=$AZURE_CONTAINER_REPOSITORY_NAME:develop-${{ github.sha }}
+            image_tag=develop-${{ github.sha }}
             echo "Change working directory to $path"
             cd "$path"
             docker build -t "$image_tag" .
 
       - name: Run Container
         env:
-          AZURE_SUBSCRIPTION_ID: ${{vars.AZURE_SUBSCRIPTION_ID}}
-          AZURE_LOCATION: ${{vars.AZURE_LOCATION}}
-          AZURE_RESOURCE_GROUP: ${{vars.AZURE_RESOURCE_GROUP}}
-          AZURE_CONTAINER_REPOSITORY_NAME: ${{vars.AZURE_CONTAINER_REPOSITORY_NAME}}             
+          PROMPTFLOW_SERVING_ENGINE: "flask"
+          PROMPTFLOW_WORKER_NUM: "1"            
         run: |
           echo "✅ Run image..."
-          image_tag=$AZURE_CONTAINER_REPOSITORY_NAME:develop-${{ github.sha }}
+          image_tag=develop-${{ github.sha }}
           docker run -d -p 8080:8080 -e PROMPTFLOW_SERVING_ENGINE=$PROMPTFLOW_SERVING_ENGINE -e PROMPTFLOW_WORKER_NUM=$PROMPTFLOW_WORKER_NUM $image_tag
