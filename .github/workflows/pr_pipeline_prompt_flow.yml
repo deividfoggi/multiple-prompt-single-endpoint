@@ -1,9 +1,11 @@
-name: PR Pipeline
+name: PR Pipeline - Promptflow
 
 on:
   pull_request:
     branches:
       - main
+    paths:
+      - 'prompt-flow-endpoint/**'
       
 jobs:
   static-code-analysis:
@@ -55,7 +57,7 @@ jobs:
         run: |
             echo "✅ Building docker image..."
             path=dist
-            image_tag=develop-${{ github.sha }}
+            image_tag=prompt-flow-${{ github.sha }}
             echo "Change working directory to $path"
             cd "$path"
             docker build -t "$image_tag" .
