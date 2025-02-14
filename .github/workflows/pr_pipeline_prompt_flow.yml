@@ -66,5 +66,5 @@ jobs:
           PROMPTFLOW_WORKER_NUM: "1"            
         run: |
           echo "✅ Run image..."
-          image_tag=develop-${{ github.sha }}
+          image_tag=prompt-flow-${{ github.sha }}
           docker run -d -p 8080:8080 -e PROMPTFLOW_SERVING_ENGINE=$PROMPTFLOW_SERVING_ENGINE -e PROMPTFLOW_WORKER_NUM=$PROMPTFLOW_WORKER_NUM $image_tag

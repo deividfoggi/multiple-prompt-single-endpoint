@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: |
           cd scan-essay
-          npm install --force
+          npm install --legacy-peer-deps
 
       - name: Run ESLint
         run: |
