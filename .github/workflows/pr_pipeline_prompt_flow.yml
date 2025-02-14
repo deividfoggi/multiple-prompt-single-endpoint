@@ -4,8 +4,6 @@ on:
   pull_request:
     branches:
       - main
-    paths:
-      - 'prompt-flow-endpoint/**'
       
 jobs:
   static-code-analysis:

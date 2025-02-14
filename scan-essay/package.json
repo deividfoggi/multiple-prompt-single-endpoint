@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node src/server.js"
   },
+  "type": "module",
   "dependencies": {
     "@azure-rest/ai-document-intelligence": "^1.0.0",
     "@azure/ai-form-recognizer": "^5.0.0",
