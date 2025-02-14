@@ -1,6 +1,5 @@
-const { DocumentAnalysisClient, AzureKeyCredential } = require("@azure/ai-form-recognizer");
-const fs = require('fs');
-require('dotenv').config();
+import { DocumentAnalysisClient, AzureKeyCredential } from "@azure/ai-form-recognizer";
+import fs from 'fs';
 
 // use your `key` and `endpoint` environment variables
 const key = process.env['DI_KEY'];
@@ -11,9 +10,6 @@ if (!key || !endpoint) {
     process.exit(1);
 }
 
-// sample document
-const documentUrlRead = "https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/rest-api/read.png"
-
 // helper function
 function* getTextOfSpans(content, spans) {
     for (const span of spans) {
@@ -21,7 +17,7 @@ function* getTextOfSpans(content, spans) {
     }
 }
 
-async function runReadScan(filePath) {
+export async function runReadScan(filePath) {
     console.log("Starting document analysis...");
     console.log(`Using endpoint: ${endpoint}`);
     console.log(`Using key: ${key ? '****' : 'not set'}`);
@@ -97,5 +93,3 @@ async function runReadScan(filePath) {
         throw error;
     }
 }
-
-module.exports = runReadScan;

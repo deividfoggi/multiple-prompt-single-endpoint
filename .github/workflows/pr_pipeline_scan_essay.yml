@@ -64,4 +64,4 @@ jobs:
 
       - name: Run Container
         run: |
-          docker run -d -p 8080:8080 scan-essay-app:${{ github.sha }}
+          docker run -d -p 8080:8080 scan-essay-app:${{ github.sha }} -e DI_KEY=temp -e DI_KEY=temp -e OPENAI_ENDPOINT=temp
