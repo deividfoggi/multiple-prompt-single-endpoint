@@ -30,9 +30,6 @@ export default [
     },
     plugins: {
       '@typescript-eslint': typescriptPlugin,
-    },
-    rules: {
-      // Add your custom rules here
-    },
+    }
   },
 ];

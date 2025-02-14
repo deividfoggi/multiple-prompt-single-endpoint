@@ -26,7 +26,7 @@ app.post('/upload', upload.single('file'), async (req, res) => {
         const result = await runReadScan(filePath);
         res.json(result);
     } catch (error) {
-        res.status(500).send('Error analyzing document');
+        res.status(500).send('Error analyzing document:' + error);
     }
 });
 
