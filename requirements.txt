@@ -1,0 +1,15 @@
+azure-ai-ml==1.25.0
+mlflow==2.20.1
+azure-monitor-opentelemetry==1.6.4
+azure-ai-resources
+azure-identity==1.16.1
+promptflow
+promptflow[azure]
+promptflow-tools
+promptflow-evals
+pandas
+python-dotenv==1.0.1
+jsonlines
+openpyxl
+marshmallow==3.22.0
+Flask
