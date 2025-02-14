@@ -1,0 +1,21 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "rules": {
+    "constructor-super": "error",
+    "no-const-assign": "error",
+    "no-this-before-super": "error",
+    "no-undef": "error",
+    "no-unreachable": "error",
+    "no-unused-vars": "warn",
+    "no-use-before-define": "error"
+  }
+}
