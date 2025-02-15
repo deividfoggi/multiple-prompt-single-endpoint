@@ -28,6 +28,10 @@ export default [
         req: 'readonly',
       },
     },
+    rules: {
+      "prefer-const": "warn",
+      "no-constant-binary-expression": "error"
+    },
     plugins: {
       '@typescript-eslint': typescriptPlugin,
     }
