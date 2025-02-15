@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Scanner</title>
+</head>
+<body>
+    <h1>Upload an essay for evaluation:</h1>
+    <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <button type="submit" id="uploadButton">Upload</button>
+    </form>
+    <div id="resultContainer"></div>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', function(event) {
+            const uploadButton = document.getElementById('uploadButton');
+            uploadButton.disabled = true;
+            uploadButton.textContent = 'Scanning...';
+
+            fetch('/upload', {
+                method: 'POST',
+                body: new FormData(this)
+            }).then(response => response.json())
+              .then(data => {
+                  console.log('Success:', data);
+                  uploadButton.disabled = false;
+                  uploadButton.textContent = 'Upload';
+
+                  // create a json using data.content in the following format
+                    const essay = {
+                        essay_type: 'essay_type_a',
+                        language: 'Portugues Brasileiro',
+                        genre: "redacao simples",
+                        statement: "Redação livre sobre qualquer tema",
+                        title: data.pages[0],
+                        essay: data.content,
+                        skills: ["coesão com o tema"]
+                    };
+
+                  // Create and show the new button
+                  const resultContainer = document.getElementById('resultContainer');
+                  const newButton = document.createElement('button');
+                  newButton.textContent = 'Evaluate with Azure OpenAI';
+                  newButton.addEventListener('click', function() {
+                      fetch('/api', {
+                          method: 'POST',
+                          headers: {
+                              'Content-Type': 'application/json'
+                          },
+                          body: JSON.stringify(essay)
+                      }).then(response => response.json())
+                        .then(apiData => {
+                            console.log('New API Success:', apiData);
+                        }).catch(apiError => {
+                            console.error('New API Error:', apiError);
+                        });
+                  });
+                  resultContainer.appendChild(newButton);
+              }).catch(error => {
+                  console.error('Error:', error);
+                  uploadButton.disabled = false;
+                  uploadButton.textContent = 'Upload';
+              });
+
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>
