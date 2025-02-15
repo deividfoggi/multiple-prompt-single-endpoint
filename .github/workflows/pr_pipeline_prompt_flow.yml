@@ -1,4 +1,4 @@
-name: PR Pipeline - Promptflow
+name: PR Pipeline - Prompt flow endpoint
 
 on:
   pull_request:

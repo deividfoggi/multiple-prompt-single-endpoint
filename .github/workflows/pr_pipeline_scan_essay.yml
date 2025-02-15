@@ -1,4 +1,4 @@
-name: PR Pipeline - Promptflow
+name: PR Pipeline - Scan Essay Demo
 
 on:
   pull_request:
