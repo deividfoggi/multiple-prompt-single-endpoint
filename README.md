@@ -9,6 +9,8 @@ This repository was inspired by the Microsoft's prompt flow official repo: https
 
 This project is designed to demonstrate how to deploy multiple prompts using prompt flow in a single endpoint. As an example, it evaluate essays using AI models using prompt flow and a code-first approach. It supports multiple essay types and provides a structured way to assess various skills such as grammar, cohesion, orthography, and relevance to the theme.
 
+This project also implements a demonstration of how to scan handwritten essays with Document Intelligence before sending it to prompt flow for evaluation. This demonstration is under scan-essay directory as a node project. The pipeline builds a docker image of this web app.
+
 ## How essay type is selected
 
 You send essay_type as a property in the json payload. This demo is ready to handle essay_type_a and essay_type_b. The first will assess multiple skills and the later one specific skill + returning each possible error and a respective suggestion.
