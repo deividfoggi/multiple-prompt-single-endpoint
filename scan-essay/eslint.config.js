@@ -31,7 +31,7 @@ export default [
     rules: {
       "prefer-const": "warn",
       "no-constant-binary-expression": "error",
-      "constructor-super": "error",
+      "constructor-super": "off",
       "no-const-assign": "error",
       "no-this-before-super": "error",
       "no-undef": "error",
