@@ -1,0 +1,67 @@
+trigger:
+  branches:
+    include:
+      - main
+
+jobs:
+- job: static_code_analysis
+  displayName: 'Static Code Analysis'
+  pool:
+    vmImage: 'ubuntu-latest'
+  environment: dev
+  steps:
+  - script: |
+      echo "Run Pylint"
+    displayName: 'Finds anti-patterns in code'
+  - script: |
+      echo "Run Bandit"
+    displayName: 'Run security checks'
+
+- job: build_image
+  displayName: 'Build Image'
+  dependsOn: static_code_analysis
+  pool:
+    vmImage: 'ubuntu-latest'
+  environment: dev
+  steps:
+  - checkout: self
+    displayName: 'Checkout code'
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.11'
+    displayName: 'Setup Python'
+  - script: |
+      python3.11 -m pip install --upgrade pip
+      pip3 uninstall -y promptflow promptflow-core promptflow-devkit promptflow-azure
+      pip3 install promptflow
+      pf --version
+    displayName: 'Install Promptflow CLI'
+  - script: |
+      pip3 cache purge
+      pip3 install --upgrade pip setuptools
+      pip3 install -r prompt-flow-endpoint/requirements.txt
+    displayName: 'Install required dependencies'
+  - script: |
+      pf flow build --source prompt-flow-endpoint --output dist --format docker
+    displayName: 'Create flow docker files'
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: 'dist/'
+      artifact: 'build-artifacts'
+    displayName: 'Upload build artifacts'
+  - script: |
+      echo "✅ Building docker image..."
+      path=dist
+      image_tag=prompt-flow-$(Build.SourceVersion)
+      echo "Change working directory to $path"
+      cd "$path"
+      docker build -t "$image_tag" .
+    displayName: 'Build Image'
+  - script: |
+      echo "✅ Run image..."
+      image_tag=prompt-flow-$(Build.SourceVersion)
+      docker run -d -p 8080:8080 -e PROMPTFLOW_SERVING_ENGINE=flask -e PROMPTFLOW_WORKER_NUM=1 $image_tag
+    displayName: 'Run Container'
+    env:
+      PROMPTFLOW_SERVING_ENGINE: "flask"
+      PROMPTFLOW_WORKER_NUM: "1"
