@@ -8,7 +8,6 @@ jobs:
   displayName: 'Static Code Analysis'
   pool:
     vmImage: 'ubuntu-latest'
-  environment: dev
   steps:
   - script: |
       echo "Run Pylint"
@@ -22,7 +21,6 @@ jobs:
   dependsOn: static_code_analysis
   pool:
     vmImage: 'ubuntu-latest'
-  environment: dev
   steps:
   - checkout: self
     displayName: 'Checkout code'
