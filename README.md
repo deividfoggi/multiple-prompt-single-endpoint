@@ -1,7 +1,9 @@
 # Multiple prompt deployment in one endpoint using prompt-flow
 This repository was inspired by the Microsoft's prompt flow official repo: https://github.com/microsoft/promptflow/tree/main/examples
 
-[![PR Pipeline](https://github.com/deividfoggi/multiple-prompt-single-endpoint/actions/workflows/pr_pipeline.yml/badge.svg)](https://github.com/deividfoggi/multiple-prompt-single-endpoint/actions/workflows/pr_pipeline.yml)
+[![PR Pipeline - Prompt flow endpoint](https://github.com/deividfoggi/multiple-prompt-single-endpoint/actions/workflows/pr_pipeline_prompt_flow.yml/badge.svg)](https://github.com/deividfoggi/multiple-prompt-single-endpoint/actions/workflows/pr_pipeline_prompt_flow.yml)
+
+[![PR Pipeline - Scan Essay Demo](https://github.com/deividfoggi/multiple-prompt-single-endpoint/actions/workflows/pr_pipeline_scan_essay.yml/badge.svg)](https://github.com/deividfoggi/multiple-prompt-single-endpoint/actions/workflows/pr_pipeline_scan_essay.yml)
 
 ## Overview
 
