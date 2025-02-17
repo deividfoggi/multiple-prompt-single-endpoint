@@ -30,7 +30,14 @@ export default [
     },
     rules: {
       "prefer-const": "warn",
-      "no-constant-binary-expression": "error"
+      "no-constant-binary-expression": "error",
+      "constructor-super": "error",
+      "no-const-assign": "error",
+      "no-this-before-super": "error",
+      "no-undef": "error",
+      "no-unreachable": "error",
+      "no-unused-vars": "warn",
+      "no-use-before-define": "error"
     },
     plugins: {
       '@typescript-eslint': typescriptPlugin,
