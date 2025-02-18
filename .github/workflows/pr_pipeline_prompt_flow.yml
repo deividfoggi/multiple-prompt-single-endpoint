@@ -40,12 +40,12 @@ jobs:
         run: | 
           pip3 cache purge
           pip3 install --upgrade pip setuptools
-          pip3 install -r prompt-flow-endpoint/requirements.txt
+          pip3 install -r requirements.txt
 
       - name: Create flow docker files
         run: |
               # reference: https://github.com/microsoft/promptflow/tree/main/examples/tutorials/flow-deploy/docker
-              pf flow build --source prompt-flow-endpoint --output dist --format docker       
+              pf flow build --source essay --output dist --format docker       
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
