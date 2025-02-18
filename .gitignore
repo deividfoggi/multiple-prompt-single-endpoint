@@ -5,6 +5,7 @@ dist/
 *.xlsx
 junit/
 responses.jsonl
+*.prompty
 
 # Python
 *.py[cod]
