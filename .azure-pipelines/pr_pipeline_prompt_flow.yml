@@ -40,7 +40,7 @@ jobs:
       pip3 install -r requirements.txt
     displayName: 'Install required dependencies'
   - script: |
-      pf flow build --source prompt-flow-endpoint --output dist --format docker
+      pf flow build --source essay --output dist --format docker
     displayName: 'Create flow docker files'
   - task: PublishPipelineArtifact@1
     inputs:
