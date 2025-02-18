@@ -13,3 +13,4 @@ jsonlines
 openpyxl
 marshmallow==3.22.0
 Flask
+azure-storage-blob

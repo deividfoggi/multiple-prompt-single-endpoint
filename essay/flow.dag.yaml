@@ -1,0 +1,18 @@
+$schema: https://azuremlschemas.azureedge.net/promptflow/latest/Flow.schema.json
+environment:
+  python_requirements_txt: requirements.txt
+inputs:
+  essay_json:
+    type: object
+outputs:
+  result:
+    type: string
+    reference: ${essay_flow.output}
+nodes:
+- name: essay_flow
+  type: python
+  source:
+    type: code
+    path: essay_flow.py
+  inputs:
+    essay_json: ${inputs.essay_json}
