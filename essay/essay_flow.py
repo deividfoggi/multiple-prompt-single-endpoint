@@ -3,6 +3,7 @@
 # ---------------------------------------------------------
 
 import json
+from typing import TypedDict
 from promptflow.core import tool
 import os
 from promptflow.core import Prompty
@@ -31,18 +32,18 @@ class BlobClient:
 
         return temp_file_path
 
+class Reply(TypedDict):
+    output: str
+    
 class Essay:
     def __init__(self, model_config: AzureOpenAIModelConfiguration):
         self.model_config = model_config
 
-    def __call__(self, essay: str) -> json:
-        # parse essay as a json
-        essay_json = json.loads(essay)
-        print("Essay type: " + essay_json['essay_type'])
+    def __call__(self, essay_json: dict) -> Reply:
         prompt_file_name = essay_json["essay_type"] + ".prompty"
         blob_client = BlobClient(prompt_file_name)
         prompt_file = blob_client(blob_name=prompt_file_name)
-        prompty = Prompty.load(source=prompt_file)
+        prompty = Prompty.load(source=prompt_file, model_config=self.model_config)
 
         # Create a dictionary of arguments
         prompty_args = {
@@ -57,14 +58,13 @@ class Essay:
 
         result = prompty(**prompty_args)
 
-        return result
+        return Reply(output=result)
 
 @tool
-def essay_selector(essay: str) -> json:
+def essay_flow(essay_json: dict) -> str:
     model_config = AzureOpenAIModelConfiguration(
             azure_deployment=os.getenv("AZURE_DEPLOYMENT")
         )
-    print(essay)
     essay_instance = Essay(model_config)
-    result = essay_instance(essay)
+    result = essay_instance(essay_json)
     return result

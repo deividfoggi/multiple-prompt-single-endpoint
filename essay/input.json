@@ -1,0 +1,12 @@
+{
+  "essay_json": {
+    "essay_type": "essay_type_a",
+    "language": "Português",
+    "genre": "redacao simples",
+    "statement": "Dissertar sobre a guerra civil americana",
+    "title": "O que foi a Guerra Civil Americana",
+    "essay": "A Guerra Civil Americana, travada entre 1861 e 1865, foi um dos conflitos mais significativos e transformadores história dos Estados Unidos. Este conflito interno, também conhecido como Guerra de Secessão, opôs os estados do Norte (a União) aos estados do Sul (os Confederados), resultando em profundas mudanças sociais, políticas e econômicas no país. Contexto e Causas: A principal causa da Guerra Civil foi a questão da escravidão. No início do século XIX, os estados do Norte começaram a abolir a escravidão, enquanto os estados do Sul dependiam fortemente do trabalho escravo para sustentar suas economias agrícolas.",
+    "skills": ["gramatica","coesão","ortografia","relevância com o tema"],
+    "support_text": "A Guerra Civil Americana, também conhecida como Guerra de Secessão ou Guerra Civil dos Estados Unidos (ver os nomes atribuídos ao evento), foi uma guerra civil travada nos Estados Unidos de 1861 a 1865, entre a União e os Confederados.[f] Sua causa principal foi a longa controvérsia sobre a escravização dos negros. O conflito eclodiu em abril de 1861, quando as forças separatistas atacaram o Fort Sumter, na Carolina do Sul, pouco depois de Abraham Lincoln ter tomado posse como Presidente dos Estados Unidos. Os legalistas da União no Norte, que também incluíam alguns estados geograficamente ocidentais e do sul, proclamaram apoio à Constituição, enfrentaram os secessionistas dos Estados Confederados do Sul, que defendiam os direitos dos estados em manter a escravidão."
+  }
+}
