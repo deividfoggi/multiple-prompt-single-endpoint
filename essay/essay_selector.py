@@ -46,15 +46,19 @@ class Essay:
         prompt_file = blob_client(blob_name=prompt_file_name)
         prompty = Prompty.load(source=prompt_file)
 
-        result = prompty(
-            language=essay["language"],
-            genre=essay["genre"],
-            statement=essay["statement"],
-            title=essay["title"],
-            essay=essay["essay"],
-            support_material=essay["support_text"],
-            skills=essay["skills"]
-        )
+        # Create a dictionary of arguments
+        prompty_args = {
+            "language": essay["language"],
+            "genre": essay["genre"],
+            "statement": essay["statement"],
+            "title": essay["title"],
+            "essay": essay["essay"],
+            "support_material": essay["support_text"],
+            "skills": essay["skills"]
+        }
+
+        result = prompty(**prompty_args)
+        
         return result
 
 @tool
